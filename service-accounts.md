@@ -15,3 +15,80 @@ Service Accounts in Kubernetes are used to provide an identity for pods running 
    * **Authorization**: Once authenticated, the Kubernetes API server checks the permissions associated with the Service Account to determine whether the pod is allowed to perform the requested actions. This is governed by RBAC policies configured in the cluster.
 
 In summary, Service Accounts in Kubernetes are essential for providing identity and access control for pods. They are created by cluster administrators or automated deployment tools and are used to authenticate and authorize pods to interact securely with the Kubernetes API server.
+
+An example of creating a Service Account in Kubernetes and using it in a pod:
+
+1.  **Service Account Creation**:
+
+    First, we'll create a Service Account named `my-service-account` in the namespace `my-namespace` using a YAML manifest.
+
+    ```yaml
+    yamlCopy codeapiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: my-service-account
+      namespace: my-namespace
+    ```
+
+    Save this YAML manifest to a file, for example, `serviceaccount.yaml`, and apply it to the cluster using `kubectl`:
+
+    ```
+    Copy codekubectl apply -f serviceaccount.yaml
+    ```
+
+    This will create the `my-service-account` Service Account in the `my-namespace` namespace.
+2.  **Pod Usage**:
+
+    Now, let's create a pod that uses the `my-service-account` Service Account. Below is an example pod definition:
+
+    ```yaml
+    yamlCopy codeapiVersion: v1
+    kind: Pod
+    metadata:
+      name: my-pod
+    spec:
+      serviceAccountName: my-service-account
+      containers:
+      - name: my-container
+        image: nginx
+    ```
+
+    Save this YAML manifest to a file, for example, `pod.yaml`, and apply it to the cluster using `kubectl`:
+
+    ```
+    Copy codekubectl apply -f pod.yaml
+    ```
+
+    This will create a pod named `my-pod` in the `my-namespace` namespace, and it will use the `my-service-account` Service Account.
+3.  **Verification**:
+
+    Now, let's verify that the pod has been created and is using the correct Service Account.
+
+    ```arduino
+    arduinoCopy codekubectl get pods -n my-namespace
+    ```
+
+    You should see the `my-pod` pod listed, and you can describe it to confirm that it's using the `my-service-account` Service Account.
+
+    ```perl
+    perlCopy codekubectl describe pod my-pod -n my-namespace
+    ```
+
+    Look for the `Service Account:` field in the output, which should show `my-service-account`.
+4.  **Token Mounting**:
+
+    Inside the pod, the Service Account token is mounted at the path `/var/run/secrets/kubernetes.io/serviceaccount/token`. You can verify this by running a shell in the pod and inspecting the filesystem:
+
+    ```perl
+    perlCopy codekubectl exec -it my-pod -n my-namespace -- sh
+    ```
+
+    Once inside the pod's shell, you can check the presence of the mounted token:
+
+    ```bash
+    bashCopy codels /var/run/secrets/kubernetes.io/serviceaccount/
+    ```
+
+    You should see a file named `token`, which contains the Service Account token.
+
+That's it! You've created a Service Account in Kubernetes and used it in a pod, demonstrating how Service Accounts are created and utilized within the cluster.
