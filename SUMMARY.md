@@ -5,3 +5,4 @@
 * [Creating a Kubernetes cluster](creating-a-kubernetes-cluster.md)
 * [ServiceAccounts](serviceaccounts.md)
 * [Bootstrap phase](bootstrap-phase.md)
+* [Kubernetes phases](kubernetes-phases.md)
