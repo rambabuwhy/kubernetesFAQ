@@ -7,3 +7,4 @@
 * [Bootstrap phase](bootstrap-phase.md)
 * [Kubernetes phases](kubernetes-phases.md)
 * [CNI vs DNS](cni-vs-dns.md)
+* [Tokens](tokens.md)
