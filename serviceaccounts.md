@@ -1,0 +1,17 @@
+# ServiceAccounts
+
+In Kubernetes, authentication is the process of verifying the identity of users or entities trying to access the cluster. One common method for authentication is through the use of ServiceAccounts.
+
+Here's how authentication works with "Bootstrap and ServiceAccount" in Kubernetes:
+
+1. **Bootstrap Tokens**: Bootstrap tokens are a way to securely authenticate and authorize kubelets that join a cluster during the bootstrap phase before they have been authorized by RBAC (Role-Based Access Control). These tokens are randomly generated and consist of a token ID and a token secret.
+2. **Authentication Process**:
+   * During the bootstrap phase, the kubelet generates a bootstrap token request with its desired role.
+   * The token request is sent to the Kubernetes API server.
+   * The API server validates the token and the requested role against the known bootstrap tokens and their associated roles.
+   * If the token is valid and the requested role is authorized, the kubelet is authenticated.
+3. **ServiceAccounts**: Once the kubelet is authenticated during the bootstrap phase, it can use a ServiceAccount to authenticate with the API server for subsequent interactions. ServiceAccounts provide a way to control access and permissions for pods running in the cluster.
+4. **ServiceAccount Token**: Each pod in Kubernetes is associated with a ServiceAccount, and the kubelet running on the node mounts a ServiceAccount token into each pod's filesystem. This token is used by the pod to authenticate with the API server when making requests.
+5. **Role-Based Access Control (RBAC)**: RBAC policies determine what actions are allowed for authenticated users and ServiceAccounts within the Kubernetes cluster. Roles and RoleBindings define these policies, specifying permissions for resources and operations.
+
+In summary, the "Bootstrap and ServiceAccount" authentication mechanism in Kubernetes involves using bootstrap tokens during the initial setup to authenticate kubelets, which then utilize ServiceAccounts and ServiceAccount tokens for subsequent authentication and authorization within the cluster. This process ensures secure access control and management of resources within the Kubernetes environment.
