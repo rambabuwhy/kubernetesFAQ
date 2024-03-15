@@ -10,3 +10,4 @@
 * [Kubernetes phases](kubernetes-phases.md)
 * [CNI vs DNS](cni-vs-dns.md)
 * [Tokens](tokens.md)
+* [Pause container](pause-container.md)
