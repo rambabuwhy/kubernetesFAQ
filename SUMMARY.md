@@ -11,4 +11,5 @@
 * [CNI vs DNS](cni-vs-dns.md)
 * [Tokens](tokens.md)
 * [Pause container](pause-container.md)
-* [Pod networking](pod-networking.md)
+* [Pod IP address](pod-ip-address.md)
+* [types of services](types-of-services.md)
