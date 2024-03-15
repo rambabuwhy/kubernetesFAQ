@@ -1,0 +1,12 @@
+# ingress vs load balancer
+
+While load balancers and ingress controllers share some similarities in terms of traffic routing and load distribution, they serve different purposes and are designed for different levels of abstraction within a Kubernetes environment. Here's why ingress is needed despite load balancers:
+
+1. **Layer 7 vs. Layer 4**: Load balancers typically operate at Layer 4 (TCP/UDP level) of the OSI model, distributing traffic based on IP addresses and ports. In contrast, ingress controllers operate at Layer 7 (HTTP level), allowing for more sophisticated routing based on hostnames, URL paths, and HTTP headers. This allows for more granular control over how traffic is routed to backend services.
+2. **HTTP(S) Features**: Ingress controllers often provide advanced features specific to HTTP and HTTPS traffic, such as SSL termination, virtual hosting, path-based routing, and header-based routing. These features are not typically available in basic Layer 4 load balancers.
+3. **Native Kubernetes Integration**: Ingress is a native Kubernetes resource, which means it is tightly integrated with the Kubernetes API server and benefits from Kubernetes' declarative configuration model. This makes it easier to manage and configure routing rules alongside other Kubernetes resources using tools like kubectl and Kubernetes YAML manifests.
+4. **Resource Efficiency**: Ingress controllers are designed to be lightweight and scalable within Kubernetes clusters, consuming fewer resources compared to traditional load balancers. They are optimized for dynamic environments where services frequently scale up and down or change configurations.
+5. **Cost**: Depending on the environment, using a dedicated load balancer service outside of the Kubernetes cluster may incur additional costs. Ingress controllers, being native Kubernetes resources, often come with minimal or no additional cost beyond the resources they consume within the cluster.
+6. **Ecosystem Integration**: Ingress controllers are part of the Kubernetes ecosystem and are supported by various cloud providers and open-source projects. They integrate seamlessly with other Kubernetes components and tools, making them a natural choice for managing external traffic within Kubernetes environments.
+
+While load balancers can perform some of the functions provided by ingress controllers, ingress offers a more Kubernetes-native, HTTP-focused, and cost-effective solution for managing external traffic to services within a Kubernetes cluster.

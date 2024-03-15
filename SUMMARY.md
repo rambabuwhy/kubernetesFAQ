@@ -13,3 +13,5 @@
 * [Pause container](pause-container.md)
 * [Pod IP address](pod-ip-address.md)
 * [types of services](types-of-services.md)
+* [ingress](ingress.md)
+* [ingress vs load balancer](ingress-vs-load-balancer.md)
