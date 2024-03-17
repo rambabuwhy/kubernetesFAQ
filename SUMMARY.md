@@ -15,3 +15,4 @@
 * [types of services](types-of-services.md)
 * [ingress](ingress.md)
 * [ingress vs load balancer](ingress-vs-load-balancer.md)
+* [Endpoints](endpoints.md)
