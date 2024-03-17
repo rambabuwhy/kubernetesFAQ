@@ -16,3 +16,4 @@
 * [ingress](ingress.md)
 * [ingress vs load balancer](ingress-vs-load-balancer.md)
 * [Endpoints](endpoints.md)
+* [service, pod and endpoint](service-pod-and-endpoint.md)
