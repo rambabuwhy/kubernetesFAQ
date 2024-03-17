@@ -54,4 +54,10 @@ Suppose you have a Kubernetes cluster running a web application with multiple in
     This Endpoints object dynamically updates to include the IP addresses of all pods labeled with `app: web-server`. If you scale up or down the number of pods, the Endpoints object will reflect those changes.
 4. **Accessing the Service**: Clients can now access your web service using the ClusterIP of the `web-service`. When they do so, Kubernetes routes the traffic to one of the pods listed in the Endpoints associated with `web-service`.
 
+* An Endpoint is a Kubernetes resource that represents a set of network addresses and ports corresponding to the pods that a Service routes traffic to.
+* When you create a Service and define its selector (which determines which pods the Service should target), Kubernetes automatically creates an Endpoint object associated with that Service.
+* The Endpoint object dynamically updates to reflect changes in the set of pods that match the Service's selector. If pods are added, removed, or modified, the Endpoint object is updated accordingly.
+* Each Endpoint consists of a list of IP addresses and ports. These IP addresses and ports correspond to the individual pods that match the Service's selector.
+* When traffic is directed to the Service's IP address and port, Kubernetes uses the Endpoint information to determine which pods should receive the traffic.
+
 In summary, Endpoints dynamically maintain the list of IP addresses and ports of the pods that a Service routes traffic to. This abstraction allows you to scale your application without needing to manually manage IP addresses or routing configurations.
